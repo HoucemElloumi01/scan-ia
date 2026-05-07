@@ -5,12 +5,16 @@ class BottomNavBar extends StatelessWidget {
   final int currentIndex;
   final Function(int) onTap;
   final String language;
+  final VoidCallback? onProfile;
+  final VoidCallback? onLogout;
 
   const BottomNavBar({
     super.key,
     required this.currentIndex,
     required this.onTap,
     required this.language,
+    this.onProfile,
+    this.onLogout,
   });
 
   @override
@@ -36,23 +40,68 @@ class BottomNavBar extends StatelessWidget {
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(25),
-        child: BottomNavigationBar(
-          currentIndex: currentIndex,
-          onTap: onTap,
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: background,
-          elevation: 0,
+        child: Row(
+          children: [
+            Expanded(
+              child: BottomNavigationBar(
+                currentIndex: currentIndex,
+                onTap: onTap,
+                type: BottomNavigationBarType.fixed,
+                backgroundColor: background,
+                elevation: 0,
 
-          selectedItemColor: selectedColor,
-          unselectedItemColor: unselectedColor,
+                selectedItemColor: selectedColor,
+                unselectedItemColor: unselectedColor,
 
-          selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+                selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
 
-          items: [
-            _buildItem(Icons.home, AppText.get(language, "home"), 0),
-            _buildItem(Icons.camera_alt, AppText.get(language, "scan"), 1),
-            _buildItem(Icons.history, AppText.get(language, "history"), 2),
-            _buildItem(Icons.settings, AppText.get(language, "settings"), 3),
+                items: [
+                  _buildItem(Icons.home, AppText.get(language, "home"), 0),
+                  _buildItem(Icons.camera_alt, AppText.get(language, "scan"), 1),
+                  _buildItem(Icons.history, AppText.get(language, "history"), 2),
+                  _buildItem(Icons.settings, AppText.get(language, "settings"), 3),
+                ],
+              ),
+            ),
+            PopupMenuButton<String>(
+              icon: Icon(Icons.menu, color: unselectedColor, size: 26),
+              offset: const Offset(0, -120),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+              ),
+              color: background,
+              onSelected: (value) {
+                if (value == 'profile') onProfile?.call();
+                if (value == 'logout') onLogout?.call();
+              },
+              itemBuilder: (context) => [
+                PopupMenuItem(
+                  value: 'profile',
+                  child: Row(
+                    children: [
+                      const Icon(Icons.person_outline, size: 20),
+                      const SizedBox(width: 10),
+                      Text(AppText.get(language, 'auth_profile')),
+                    ],
+                  ),
+                ),
+                const PopupMenuDivider(),
+                PopupMenuItem(
+                  value: 'logout',
+                  child: Row(
+                    children: [
+                      Icon(Icons.logout, size: 20, color: Colors.red.shade400),
+                      const SizedBox(width: 10),
+                      Text(
+                        AppText.get(language, 'auth_logout'),
+                        style: TextStyle(color: Colors.red.shade400),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(width: 4),
           ],
         ),
       ),

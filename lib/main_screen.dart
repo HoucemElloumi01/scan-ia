@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'views/home_view.dart';
 import 'views/scanner_view.dart';
 import 'views/history_view.dart';
 import 'views/settings_view.dart';
+import 'views/profile_view.dart';
 import 'widgets/bottom_nav_bar.dart';
+import 'services/auth_service.dart';
 
 class MainScreen extends StatefulWidget {
   final Function(String)? onChangeLanguage;
@@ -49,6 +52,17 @@ class _MainScreenState extends State<MainScreen> {
           setState(() {
             currentIndex = index;
           });
+        },
+        onProfile: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => ProfileView(language: currentLang),
+            ),
+          );
+        },
+        onLogout: () async {
+          await AuthService().signOut();
         },
       ),
     );

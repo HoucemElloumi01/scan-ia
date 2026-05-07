@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "271794628786",
+    "project_id": "scan-ai-95cd7",
+    "storage_bucket": "scan-ai-95cd7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271794628786:android:b1600a038e5cc3256801ab",
+        "android_client_info": {
+          "package_name": "com.scanai.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuPGWgLvsrrhml5zcDLg30k6t0KuSYldE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
