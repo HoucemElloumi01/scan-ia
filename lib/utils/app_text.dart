@@ -59,6 +59,8 @@ class AppText {
       "auth_profile": "Profil",
       "auth_profile_title": "Mon Profil",
       "auth_member_since": "Membre depuis",
+      "translation_success_title": "Traduction terminée",
+      "translation_success_body": "Le texte a été traduit avec succès.",
     },
     "en": {
       "home": "Home",
@@ -118,6 +120,8 @@ class AppText {
       "auth_profile": "Profile",
       "auth_profile_title": "My Profile",
       "auth_member_since": "Member since",
+      "translation_success_title": "Translation complete",
+      "translation_success_body": "The text has been translated successfully.",
     },
     "ar": {
       "home": "الرئيسية",
@@ -176,6 +180,8 @@ class AppText {
       "auth_profile": "الملف الشخصي",
       "auth_profile_title": "ملفي الشخصي",
       "auth_member_since": "عضو منذ",
+      "translation_success_title": "اكتملت الترجمة",
+      "translation_success_body": "تمت ترجمة النص بنجاح.",
     },
   };
 

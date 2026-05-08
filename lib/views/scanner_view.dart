@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/services/feedback_service.dart';
+import 'package:project/services/notification_service.dart';
 import 'package:project/widgets/CustomAppBar.dart';
 import '../controllers/scan_controller.dart';
 import '../models/scan_result.dart';
@@ -85,6 +86,11 @@ class _ScannerViewState extends State<ScannerView> {
 
     if (res.trim().isNotEmpty) {
       await feedback.playTranslate();
+      if (FeedbackService.isEnabled) {
+        await NotificationService.instance.showTranslationSuccess(
+          lang: selectedLang,
+        );
+      }
     }
   }
 

@@ -82,6 +82,23 @@ class NotificationService {
     );
   }
 
+  Future<void> showTranslationSuccess({required String lang}) async {
+    await _notifications.show(
+      id: 3001,
+      title: AppText.get(lang, 'translation_success_title'),
+      body: AppText.get(lang, 'translation_success_body'),
+      notificationDetails: const NotificationDetails(
+        android: AndroidNotificationDetails(
+          _channelId,
+          _channelName,
+          channelDescription: _channelDescription,
+          importance: Importance.defaultImportance,
+          priority: Priority.defaultPriority,
+        ),
+      ),
+    );
+  }
+
   Future<void> _requestAndroidPermissions() async {
     final androidPlugin = _notifications
         .resolvePlatformSpecificImplementation<
